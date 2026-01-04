@@ -1,0 +1,253 @@
+:root {
+    --bg-color: #E3F0E8;
+    --primary-sage: #4CAF50;
+    --dark-sage: #388E3C;
+    --text-color: #333333;
+    --card-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+/* --- THE MAIN LAYOUT --- */
+.main-wrapper {
+    display: flex;
+    gap: 40px; /* Space between the two cards */
+    max-width: 1100px;
+    width: 100%;
+    align-items: flex-start; /* Aligns tops of cards */
+}
+
+/* --- COMMON CARD STYLES --- */
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: var(--card-shadow);
+}
+
+/* --- LEFT CARD (Configuration) --- */
+.config-card {
+    flex: 1; /* Takes up remaining space */
+    min-width: 350px;
+}
+
+h2 {
+    color: var(--dark-sage);
+    margin-top: 0;
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    font-size: 22px; /* Bigger Title */
+}
+
+/* --- RIGHT CARD (Preview) --- */
+.preview-card {
+    flex: 0 0 420px; /* Fixed width for the QR side */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 40px; /* Keeps it visible if you scroll */
+}
+
+h1 {
+    color: var(--dark-sage);
+    font-size: 28px; /* Bigger Main Title */
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+/* --- INPUTS & TYPOGRAPHY (Bigger Text) --- */
+label {
+    font-weight: 600;
+    font-size: 16px; /* Increased from 13px */
+    color: #444;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input[type="text"], input[type="file"], select {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px; /* Bigger input text */
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+    background: #fdfdfd;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-sage);
+    background: white;
+}
+
+.option-group { margin-bottom: 25px; }
+
+/* Flex rows for inputs */
+.row {
+    display: flex;
+    gap: 20px;
+}
+.half { flex: 1; }
+
+/* Custom Color Input Wrapper */
+.color-wrapper {
+    height: 50px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+input[type="color"] {
+    width: 100%; /* 105% to hide borders */
+    height: 100%; /* 110% to hide borders */
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transform: scale(1.1); /* Hack to remove ugly default borders */
+}
+
+/* --- PATTERN GRID (Fixed) --- */
+.patterns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.pattern-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.pattern-item:hover { background: #e9f5e9; }
+.pattern-item.selected {
+    border-color: var(--primary-sage);
+    background: #e0f2f1;
+}
+
+.pattern-item img {
+    width: 100%;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.pattern-item span {
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* --- PREVIEW AREA & DOWNLOAD --- */
+#qr-code {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    background: white;
+}
+
+.download-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+button#btn-download {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--primary-sage);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px; /* Nice big button */
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button#btn-download:hover {
+    background-color: var(--dark-sage);
+    transform: translateY(-2px);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+    .main-wrapper {
+        flex-direction: column; /* Stack cards on tablet/mobile */
+        align-items: center;
+    }
+    .config-card, .preview-card {
+        width: 100%;
+        max-width: 500px;
+        flex: none;
+    }
+    .preview-card {
+        order: -1; /* Puts QR code ON TOP on mobile */
+        position: static;
+    }
+}
+
+/* --- CREATOR FOOTER --- */
+.creator-footer {
+    text-align: center;
+    margin-top: 40px; /* Space between card and footer */
+    padding-bottom: 20px;
+    color: #666;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.creator-footer p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.creator-footer strong {
+    color: var(--dark-sage); /* Uses your theme color */
+    font-weight: 700;
+}
+
+.social-links {
+    margin-top: 12px;
+    font-size: 16px;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 700;
+    transition: color 0.2s;
+    padding: 0 8px;
+    font-size: 15px;
+}
+
+/* Hover Effects */
+.social-links a:hover {
+    color: var(--primary-sage); /* Turns green on hover */
+    text-decoration: underline;
+}
+
+.separator {
+    color: #ccc;
+    margin: 0 5px;
+}
