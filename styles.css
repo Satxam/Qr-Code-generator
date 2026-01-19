@@ -1,0 +1,384 @@
+:root {
+    --bg-color: #E3F0E8;
+    --primary-sage: #4CAF50;
+    --dark-sage: #388E3C;
+    --text-color: #333333;
+    --card-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 40px 0;
+    box-sizing: border-box;
+}
+
+/* --- MINT QR HEADER STYLES --- */
+.mint-header {
+    width: 100%;
+    background: linear-gradient(135deg, #8ab592 0%, #388E3C 100%);
+    padding: 30px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    max-width: 1100px;
+    width: 100%;
+}
+
+.mint-logo {
+    width: 100px;
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+
+.header-text h1 {
+    margin: 0;
+    color: white;
+    font-size: 3rem;
+    border: none;
+    padding: 0;
+}
+
+.header-text p {
+    margin: 5px 0 0 0;
+    color: #f1f8f3;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Mobile adjust */
+@media (max-width: 600px) {
+    .header-inner { flex-direction: column; text-align: center; }
+    .header-text h1 { font-size: 2.2rem; }
+}
+
+/* --- THE MAIN LAYOUT --- */
+.main-wrapper {
+    display: flex;
+    gap: 40px;
+    max-width: 1100px;
+    width: 100%;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+/* --- COMMON CARD STYLES --- */
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: var(--card-shadow);
+}
+
+/* --- LEFT CARD (Configuration) --- */
+.config-card {
+    flex: 1;
+    min-width: 350px;
+}
+
+h2 {
+    color: var(--dark-sage);
+    margin-top: 0;
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    font-size: 22px;
+}
+
+/* --- RIGHT CARD (Preview) --- */
+.preview-card {
+    flex: 0 0 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 40px;
+}
+
+h1 {
+    color: var(--dark-sage);
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+/* --- INPUTS & TYPOGRAPHY (Bigger Text) --- */
+label {
+    font-weight: 600;
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input[type="text"], input[type="file"], select {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+    background: #fdfdfd;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-sage);
+    background: white;
+}
+
+.option-group { margin-bottom: 25px; }
+
+.row {
+    display: flex;
+    gap: 20px;
+}
+.half { flex: 1; }
+
+.color-wrapper {
+    height: 50px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+input[type="color"] {
+    width: 100%; /* 105% to hide borders */
+    height: 100%; /* 110% to hide borders */
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transform: scale(1.1); /* Hack to remove ugly default borders */
+}
+
+/* --- PATTERN GRID (Fixed) --- */
+.patterns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.pattern-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.pattern-item:hover { background: #e9f5e9; }
+.pattern-item.selected {
+    border-color: var(--primary-sage);
+    background: #e0f2f1;
+}
+
+.pattern-item img {
+    width: 100%;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.pattern-item span {
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* --- SELECT WRAPPER FOR DOWNLOAD FORMAT --- */
+.select-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.select-wrapper label {
+    margin-bottom: 0;
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background: #fdfdfd;
+    cursor: pointer;
+}
+
+.select-wrapper select:focus {
+    outline: none;
+    border-color: var(--primary-sage);
+    background: white;
+}
+
+/* --- PREVIEW AREA & DOWNLOAD --- */
+#qr-code {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    background: white;
+}
+
+.download-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+button#btn-download {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--primary-sage);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button#btn-download:hover {
+    background-color: var(--dark-sage);
+    transform: translateY(-2px);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+    .main-wrapper {
+        flex-direction: column; /* Stack cards on tablet/mobile */
+        align-items: center;
+    }
+    .config-card, .preview-card {
+        width: 100%;
+        max-width: 500px;
+        flex: none;
+    }
+    .preview-card {
+        order: -1; /* Puts QR code ON TOP on mobile */
+        position: static;
+    }
+}
+
+/* --- CREATOR FOOTER --- */
+.creator-footer {
+    text-align: center;
+    margin-top: 40px; /* Space between card and footer */
+    padding-bottom: 20px;
+    color: #666;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.creator-footer p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.creator-footer strong {
+    color: var(--dark-sage); /* Uses your theme color */
+    font-weight: 700;
+}
+
+.social-links {
+    margin-top: 12px;
+    font-size: 16px;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 700;
+    transition: color 0.2s;
+    padding: 0 8px;
+    font-size: 15px;
+}
+
+.social-links a:hover {
+    color: var(--primary-sage);
+    text-decoration: underline;
+}
+
+.separator {
+    color: #ccc;
+    margin: 0 5px;
+}
+
+/* --- STATS & COUNTERS --- */
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #eee;
+    width: 100%;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #666;
+    background: #f8fcf8; /* Very light mint */
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+/* Like Button Interactivity */
+.stat-item.clickable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.stat-item.clickable:hover {
+    background: #edf7ef;
+    border-color: var(--primary-sage);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.stat-item.clickable:active {
+    transform: scale(0.95);
+}
+
+/* Heart Animation state */
+.stat-item.liked {
+    border-color: #e91e63;
+    color: #e91e63;
+    background: #fff0f5;
+}
+
+.stat-item.liked .heart-icon {
+    animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes heartPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}

@@ -1,0 +1,10 @@
+# 1. Mac & Windows System Junk (Very Common!)
+.DS_Store
+Thumbs.db
+
+# 2. Editor Settings (Personal preferences you don't need to share)
+.vscode/
+.idea/
+
+# 3. Logs (If something creates error logs)
+*.log

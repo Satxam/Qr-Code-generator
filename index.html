@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Mint QR - Free QR Code Generator</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+            <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+        <link href="styles.css" rel="stylesheet">
+        
+        </head>
+        <body>
+            <header class="mint-header">
+                <div class="header-inner">
+                    <img src="mint.avif" alt="Mint QR Logo" class="mint-logo">
+                    <div class="header-text">
+                        <h1>Mint QR</h1>
+                        <p>Generate your free QR codes with unlimited downloads, no expiration.</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="main-wrapper">
+                <div class="card config-card">
+                    <h2>Configuration</h2>
+
+                    <div class="option-group">
+                        <label>Website / Text</label>
+                        <input type="text" id="data-input" placeholder="https://example.com" value="https://example.com">
+                    </div>
+
+                    <div class="option-group row">
+                        <div class="half">
+                            <label>Dots Color</label>
+                            <div class="color-wrapper">
+                                <input type="color" id="dots-color" value="#4E7052">
+                            </div>
+                        </div>
+                        <div class="half">
+                            <label>Background</label>
+                            <div class="color-wrapper">
+                                <input type="color" id="bg-color" value="#ffffff">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label>Upload Logo</label>
+                        <input type="file" id="logo-input" accept="image/*">
+                    </div>
+
+                    <div class="option-group">
+                        <label>Body Pattern</label>
+                        <div class="patterns-grid">
+                            <div class="pattern-item" data-pattern="square">
+                                <img src="Body Patterns/square.png" alt="Square">
+                                <span>Square</span>
+                            </div>
+                            <div class="pattern-item" data-pattern="dots">
+                                <img src="Body Patterns/dot.png" alt="Dots">
+                                <span>Dots</span>
+                            </div>
+                            <div class="pattern-item selected" data-pattern="rounded">
+                                <img src="Body Patterns/rounded.png" alt="Rounded">
+                                <span>Rounded</span>
+                            </div>
+                            <div class="pattern-item" data-pattern="extra-rounded">
+                                <img src="Body Patterns/Extra Rounded.png" alt="Extra">
+                                <span>Extra</span>
+                            </div>
+                            <div class="pattern-item" data-pattern="classy">
+                                <img src="Body Patterns/classy.png" alt="Classy">
+                                <span>Classy</span>
+                            </div>
+                            <div class="pattern-item" data-pattern="classy-rounded">
+                                <img src="Body Patterns/classy rounded.png" alt="Classy R">
+                                <span>Classy R</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label>Recent History</label>
+                        <div id="history-list"></div>
+                    </div>
+                </div>
+
+                <div class="card preview-card">
+                    <h1>QR Generator</h1>
+            
+                    <div id="qr-code"></div>
+
+                    <div class="download-section">
+                        <div class="select-wrapper">
+                            <label>Format</label>
+                            <select id="download-format">
+                                <option value="png">PNG</option>
+                                <option value="jpeg">JPG</option>
+                                <option value="svg">SVG</option>
+                                <option value="pdf">PDF</option>
+                            </select>
+                        </div>
+                        <button id="btn-download">Download QR Code</button>
+                    </div>
+
+                    <div class="stats-row">
+                        <div class="stat-item" title="Total page views">
+                            <span class="stat-icon">👁️</span>
+                            <span id="visit-count">...</span>
+                        </div>
+                        <div class="stat-item clickable" id="like-btn" title="Like this generator">
+                            <span class="stat-icon heart-icon">❤️</span>
+                            <span id="like-count">...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="creator-footer">
+                <p>Created by <strong>Satyam Krishna</strong></p>
+                <div class="social-links">
+                    <a href="https://github.com/Satxam" target="_blank" class="link-github">GitHub</a>
+                    <span class="separator">|</span>
+                    <a href="https://www.linkedin.com/in/satyam-krishna1/" target="_blank" class="link-linkedin">LinkedIn</a>
+                </div>
+            </footer>
+
+            <script src="script.js"></script>
+        </body>
+                </html>
